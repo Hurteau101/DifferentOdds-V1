@@ -8,7 +8,8 @@ def get_api_data():
 
 @app.task
 @transaction.atomic
-def get_data(data):
+def get_data():
+    data = get_api_data()
     EsportData.objects.all().delete()
 
     add_player_objects_to_create = []
