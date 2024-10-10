@@ -23,7 +23,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://differentodds-3cceca9b5971.herokuapp.com/", "differentodds-3cceca9b5971.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "differentodds.com",
+    "https://www.differentodds.com",
+    "127.0.0.1"
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
