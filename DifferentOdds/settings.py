@@ -24,7 +24,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "differentodds.com",
+    "www.differentodds.com",
     "https://www.differentodds.com",
     "127.0.0.1"
 ]
