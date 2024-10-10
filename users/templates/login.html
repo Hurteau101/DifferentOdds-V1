@@ -1,0 +1,48 @@
+{% extends 'user_main.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% block content %}
+<div class="login-container">
+    <div class="d-flex justify-content-center">
+        <img src="{% static 'images/login_register/esports_logo.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
+    </div>
+    <div class="card shadow rounded-4">
+        <div class="card-body p-4 p-sm-5">
+            <div class="text-center mb-4">
+
+                <h2 class="fw-bold">Sign-in</h2>
+            </div>
+            <form action="{% url 'login' %}" method='POST'>
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username">
+                    <label for="floatingUsername">Username</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+               <div>
+                    {% for message in messages %}
+                        <p class="text-center text-danger">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg btn-login">Login</button>
+                </div>
+            </form>
+            <div class="text-center my-3 position-relative">
+                <span class="text-muted divider">Or</span>
+            </div>
+            <div class="d-grid">
+                <a href="{% url 'register' %}" class="btn btn-lg btn-createAccount">
+                    Create an Account
+                </a>
+            </div>
+            <div class="text-center mt-4">
+                <p class="text-muted mb-0">Forgot your password? <a href="{% url 'reset_password' %}" class="text-primary">Click Here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

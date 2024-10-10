@@ -1,0 +1,79 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top px-3 py-0">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'csgo' %}">
+            {% load static %}
+            <img src="{% static 'images/navbar/esports_logo.png' %}" alt="Esports Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item {% if request.path == '/esports/csgo' %}active{% endif %}">
+                   <a href="{% url 'csgo' %}"><img src="{% static 'images/navbar/csgo.png' %}" alt="CS:GO">
+                    {% if csgo_total > 0 %}   
+                        <span class="badge bg-danger badge-notification">{{ csgo_total }}</span></a>     
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>  
+                    {% endif %}
+                </li>
+                <li class="nav-item {% if request.path == '/esports/lol' %}active{% endif %}">
+                   <a href="{% url 'lol' %}"><img src=" {% static 'images/navbar/lol.png' %}" alt="LEAGUE OF LEGENDS">
+                    {% if lol_total > 0 %}   
+                        <span class="badge bg-danger badge-notification">{{ lol_total }}</span></a>     
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>  
+                    {% endif %}                 
+                </li>    
+            
+                <li class="nav-item {% if request.path == '/esports/val' %}active{% endif %}">
+                   <a href="{% url 'val' %}"><img src="{% static 'images/navbar/valorant.png' %}" alt="VALORANT"></a>
+                    {% if val_total > 0 %}   
+                        <span class="badge bg-danger badge-notification">{{ val_total }}</span></a>     
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>  
+                    {% endif %}
+                </li>
+                <li class="nav-item {% if request.path == '/esports/dota2' %}active{% endif %}">
+                   <a href="{% url 'dota2' %}"><img src="{% static 'images/navbar/dota2.png' %}" alt="DOTA 2">
+                   {% if dota2_total > 0 %}   
+                        <span class="badge bg-danger badge-notification">{{ dota2_total }}</span></a>     
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>  
+                    {% endif %}                          
+                </li>
+                <li class="nav-item {% if request.path == '/esports/halo' %}active{% endif %}">
+                   <a href="{% url 'halo' %}"><img src="{% static 'images/navbar/halo.png' %}" alt="HALO">
+                   {% if halo_total > 0 %}   
+                        <span class="badge bg-danger badge-notification">{{ halo_total }}</span></a>     
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>  
+                    {% endif %}                 
+                </li>
+                <li class="nav-item {% if request.path == '/esports/cod' %}active{% endif %}">
+                    <a href="{% url 'cod' %}"><img src="{% static 'images/navbar/cod.png' %}" alt="CALL OF DUTY">
+                    {% if cod_total > 0 %}   
+                        <span class="badge bg-danger badge-notification">{{ cod_total }}</span></a>     
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>  
+                    {% endif %}
+                    </a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <div class="dropdown">
+                    <button class="btn btn-lg dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="bi bi-person-circle
+                        " width="32" height="32"></span> Hi, <b>{{ request.user.username|title }}</b>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="{% url 'logout' %}"><span class="bi bi-box-arrow-right"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+

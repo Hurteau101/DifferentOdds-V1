@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+{% block title %} {{ esport_name }} {% endblock %}
+{% block content %}
+<div class="container-fluid main-content">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mb-4">{{ esport_name }}</h1>
+        </div>
+        <div class="col"></div>
+        <div class="col-auto d-flex justify-content-end align-items-center">
+            <button type="button" id="btnBet"
+                    class="btn btn-lg bg-dark btnBet bg-gradient text-light rounded-5 me-3 mb-2"
+                    style="font-size: 1rem;">
+                <span class="bi bi-hand-thumbs-up">
+                    Bet on PrizePicks
+                </span>
+            </button>
+            <button type="button" id="btnCopy" class="btn btn-lg bg-primary bg-gradient text-light rounded-5  mb-2"
+                    style="font-size: 1rem;">
+                <span class="bi bi-copy">
+                    Copy Link
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-body p-4">
+            <div class="row g-2 mb-3">
+                <div class="col-sm-12 col-md-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingStatSelect" aria-label="Floating label select example">
+                            <option value="All" selected>All</option>
+                            {% for stat in stat_types %}
+                                <option>{{ stat }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingStatSelect">Stat Filter</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingTeamSelect" aria-label="Floating label select example">
+                            <option selected>All</option>
+                            {% for team in teams %}
+                                <option>{{ team }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingTeamSelect">Team Filter</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8 position-relative">
+                    <input type="text" id="customSearch" class="form-control form-control-lg"
+                           style="height: 100%;" placeholder="Enter player, team, time, stat type here...">
+                    <button class="btn btn-float">
+                        <span class="bi bi-search text-dark"></span>
+                    </button>
+                </div>
+            </div>
+            <table id="esportsTable" class="table table-striped dt-responsive nowrap table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="width: 130px;">Difference</th>
+                        <th style="width: 100px">Percentage</th>
+                        <th>Sport</th>
+                        <th style="width: 300px;">Player</th>
+                        <th style="width: 300px;">Team</th>
+                        <th style="width: 300px;">Opponent</th>
+                        <th>Stat Type</th>
+                        <th style="width: 90px">Underdog</th>
+                        <th style="width: 90px">Prize Picks</th>
+                        <th>Game Time</th>
+                        <th>Prize Pick Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player_details in esport_data %}
+                        <tr>
+                            <td><span class="badge rounded-pill bg-warning">{{ player_details.difference }}</span></td>
+                            <td>{{ player_details.difference_percentage }}%</td>
+                            <td>{{ player_details.sport }}</td>
+                            <td>{{ player_details.player_name }}</td>
+                            <td>{{ player_details.team_name }}</td>
+                            <td>{{ player_details.opponent_name }}</td>
+                            <td>
+                                <span {% if 'Headshots' in player_details.stat_type %} class="text-danger"
+                                {% else %} class="text-primary" {% endif %}>
+                                    {{ player_details.stat_type }}
+                                </span>
+                            </td>
+                            <td>
+                                <span {% if player_details.underdog < player_details.prizepick %} class="badge rounded-pill bg-success px-3"{% else %} class="px-2"{% endif %}>
+                                    {{ player_details.underdog }}
+                                </span>
+                            </td>
+                            <td>
+                                <span {% if player_details.prizepick < player_details.underdog %} class="badge rounded-pill bg-success px-3" {% else %} class="px-2"{% endif %}>
+                                    {{ player_details.prizepick }}
+                                </span>
+                            </td>
+                            <td data-timestamp="{{ player_details.timestamp|date:"U" }}">
+                                {{ player_details.timestamp }}
+                            </td>
+                            <td class="center-checkbox">
+                                <input type="checkbox" id="table-checkbox" class="form-check-input row-checkbox"
+                                       data-value="{{ player_details.projection_string }}">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
