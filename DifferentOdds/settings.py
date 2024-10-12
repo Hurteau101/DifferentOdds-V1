@@ -26,6 +26,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     "www.differentodds.com",
     "https://www.differentodds.com",
+    "https://differentodds-3cceca9b5971.herokuapp.com/",
     "127.0.0.1"
 ]
 
