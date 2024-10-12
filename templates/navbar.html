@@ -70,6 +70,9 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="{% url 'logout' %}"><span class="bi bi-box-arrow-right"></span> Logout</a></li>
                         <li><a class="dropdown-item" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#contactModal"><span class="bi bi-discord"></span> Contact</a></li>
+                        {% if request.user.is_staff %}
+                            <li><a class="dropdown-item" href="{% url 'admin_panel' %}"><span class="bi bi-gear"></span> Admin Panel</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

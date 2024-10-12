@@ -1,5 +1,32 @@
 {% extends 'main.html' %}
 {% block title %} Admin Panel {% endblock %}
 {% block content %}
-
+<div class="container-fluid main-content">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-body p-4">
+            <table id="admin_panel_table" class="table table-striped dt-responsive nowrap table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="text-center">Username</th>
+                        <th style="width: 130px;">Discord</th>
+                        <th>Email</th>
+                        <th>Last Login</th>
+                        <th>Date Joined</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in user_data %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.discord_username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.last_login }}</td>
+                            <td>{{ user.date_joined }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
