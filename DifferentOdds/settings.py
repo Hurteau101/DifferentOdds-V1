@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'esports.apps.EsportsConfig',
     'users.apps.UsersConfig',
+    'admin_panel.apps.AdminPanelConfig'
 ]
 
 MIDDLEWARE = [
