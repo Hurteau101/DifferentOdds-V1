@@ -5,7 +5,7 @@ from django.urls import path, include
 from admin_panel import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('esports/', include('esports.urls')),
     path('', include('users.urls')),
     path('', lambda request: redirect('login')),
