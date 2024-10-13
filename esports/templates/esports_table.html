@@ -75,7 +75,7 @@
                 <tbody>
                     {% for player_details in esport_data %}
                         <tr>
-                            <td><span class="badge rounded-pill bg-warning">{{ player_details.difference }}</span></td>
+                            <td><span class="badge rounded-pill difference-span">{{ player_details.difference }}</span></td>
                             <td>{{ player_details.difference_percentage }}%</td>
                             <td>{{ player_details.sport }}</td>
                             <td>{{ player_details.player_name }}</td>

@@ -87,6 +87,7 @@ $(document).ready(function() {
         order: [[0, "desc"]],
         autoWidth: false,  // Use 'autoWidth' instead of 'bAutoWidth'
         info: true,
+        ordering: true,
         buttons: [
             {
                 text: 'Refresh',

@@ -84,7 +84,7 @@ $(document).ready(function() {
         responsive: true,
         searching: true,  // Use 'searching' instead of 'bFilter'
         lengthMenu: [[-1, 10, 25, 50], ["All", 10, 25, 50]],
-        // order: [[0, "desc"]],
+        order: [[0, "desc"]],
         autoWidth: false,  // Use 'autoWidth' instead of 'bAutoWidth'
         info: true,
         ordering: true,
