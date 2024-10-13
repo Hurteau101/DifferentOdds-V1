@@ -126,6 +126,9 @@ $(document).ready(function() {
     $('#floatingStatSelect').on('change', function() {
         var selectedStat = $(this).val();
 
+        console.log(selectedStat);
+
+
         if (selectedStat === "All") {
             table.column(6).search('').draw();  // Clear filter when "All" is selected
         } else {

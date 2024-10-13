@@ -7,7 +7,8 @@
             <table id="admin_panel_table" class="table table-striped dt-responsive nowrap table-hover" style="width:100%">
                 <thead>
                     <tr>
-                        <th class="text-center">Username</th>
+                        <th style="width: 10px;" class="text-center">#</th>
+                        <th>Username</th>
                         <th style="width: 130px;">Discord</th>
                         <th>Email</th>
                         <th>Last Login</th>
@@ -17,6 +18,7 @@
                 <tbody>
                     {% for user in user_data %}
                         <tr>
+                            <td>{{ forloop.counter }}</td>
                             <td>{{ user.username }}</td>
                             <td>{{ user.discord_username }}</td>
                             <td>{{ user.email }}</td>
