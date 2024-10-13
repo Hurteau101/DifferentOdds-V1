@@ -78,6 +78,8 @@ document.getElementById('btnCopy').addEventListener('click', function(){
 
 var table;
 
+const sportName = document.getElementById('sport_name').textContent;
+
 $(document).ready(function() {
     // Initialize the DataTable
     table = $('#esportsTable').DataTable({
@@ -88,6 +90,14 @@ $(document).ready(function() {
         autoWidth: false,  // Use 'autoWidth' instead of 'bAutoWidth'
         info: true,
         ordering: true,
+        language: {
+            "emptyTable": `No data found in ${sportName}. Check back later. Reminder you can click 'Esports Alerts' 
+            in the top right dropdown to get notified when new data is available.`,
+        },
+        // language: {
+        //     "emptyTable": `No data found in ${sportName}. Check back later.<br>Reminder you can click 'Esports Alerts'
+        //     in the top right dropdown to get notified when new data is available.`
+        // },
         buttons: [
             {
                 text: 'Refresh',
