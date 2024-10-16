@@ -114,11 +114,26 @@ body.is-login {
     width: 100%;
     max-width: 400px;
 }
+/*.card {*/
+/*    background-color: rgba(255, 255, 255, 1);*/
+/*    backdrop-filter: blur(10px);*/
+/*    -webkit-backdrop-filter: blur(10px);*/
+/*}*/
+
 .card {
     background-color: rgba(255, 255, 255, 1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    display: block;
+    height: auto; /* Let the height adjust automatically */
+    max-width: 100%; /* Make sure it doesn’t overflow horizontally */
+    overflow-y: visible; /* Ensure vertical overflow is visible */
+    overflow-x: auto; /* If table is wider than the card, allow horizontal scrolling */
 }
+
+
+
+
 .btn-login {
     background-color: #4CAF50;
     border-color: #4CAF50;
