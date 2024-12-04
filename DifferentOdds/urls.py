@@ -10,4 +10,5 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', lambda request: redirect('login')),
     path('admin-panel', views.admin_panel, name='admin_panel'),
+    path('users/', include('users.urls')),  # Include the users app URLs
 ]

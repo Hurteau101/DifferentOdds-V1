@@ -11,3 +11,14 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class UserAlert(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()
+    acknowledged = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.message
+

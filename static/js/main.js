@@ -159,3 +159,90 @@ $(document).ready(function() {
     });
 
 });
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+function fetchAlerts() {
+    fetch('/users/get_user_alerts/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.alerts.length > 0) {
+            alertUser(data.alerts);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching alerts:', error);
+    });
+}
+
+function alertUser(alerts) {
+    const modal = new bootstrap.Modal(document.getElementById('popup'));
+    const modalBody = document.querySelector('#popup .modal-body');
+    const closeButton = document.querySelector('#popup .btn-secondary');
+
+    // Clear previous messages
+    modalBody.innerHTML = '';
+
+    // Append each alert message to the modal body
+    alerts.forEach(alert => {
+        const p = document.createElement('p');
+        p.textContent = alert.message;
+        modalBody.appendChild(p);
+    });
+
+    modal.show();
+
+    closeButton.onclick = function() {
+        alerts.forEach(alert => acknowledgeAlert(alert.id));
+        modal.hide();
+    };
+}
+
+function acknowledgeAlert(alertId) {
+    fetch('/users/acknowledge_alert/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        credentials: 'same-origin',
+        body: JSON.stringify({ alert_id: alertId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status !== 'success') {
+            console.error('Error acknowledging alert:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error acknowledging alert:', error);
+    });
+}
+
+// Fetch alerts every 30 seconds
+setInterval(fetchAlerts, 30000);
+
+// Fetch alerts on page load
+fetchAlerts();

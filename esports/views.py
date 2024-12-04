@@ -3,6 +3,8 @@ from esports.tasks import get_api_data, get_data
 from esports.models import EsportData
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from users.models import UserAlert
+
 
 @login_required(login_url='login')
 def load_cod(request):
