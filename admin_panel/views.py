@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from users.models import UserProfile
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+import json
+from users.models import UserAlert
 
 
 def admin_required(view_func):
@@ -31,3 +36,15 @@ def admin_panel(request):
         })
 
     return render(request, 'admin_panel.html', {'user_data': user_data})
+
+@csrf_exempt
+@require_POST
+def send_message(request):
+    data = json.loads(request.body)
+    message = data.get('message')
+    if message:
+        users = User.objects.all()
+        for user in users:
+            UserAlert.objects.create(user=user, message=message)
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid message'}, status=400)

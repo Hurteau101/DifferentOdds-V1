@@ -2,6 +2,33 @@
 {% block title %} Admin Panel {% endblock %}
 {% block content %}
 <div class="container-fluid main-content">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#popup">
+        Send Message to All Users
+    </button>
+
+    <div id="popup" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-light">
+                    <h5 class="modal-title"><span class="bi bi-exclamation-circle"></span> Update Users</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="messageForm">
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card shadow border-0 rounded-4">
         <div class="card-body p-4">
             <table id="admin_panel_table" class="table table-striped dt-responsive nowrap table-hover" style="width:100%">

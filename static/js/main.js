@@ -160,6 +160,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+const csrftoken = getCookie('csrftoken');
+
+document.addEventListener('DOMContentLoaded', function() {
+    const messageForm = document.getElementById('messageForm');
+
+    messageForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const message = document.getElementById('message').value;
+
+        fetch('/admin_panel/send_message/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ message: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                $('#popup').modal('hide'); // Close the modal
+            } else {
+                alert('Failed to send message.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        });
+    });
+});
+
+
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -174,8 +208,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-const csrftoken = getCookie('csrftoken');
 
 function fetchAlerts() {
     fetch('/users/get_user_alerts/', {
