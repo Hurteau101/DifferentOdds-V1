@@ -139,7 +139,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CELERY_BROKER_URL = os.getenv("REDIS_TLS_URL", "redis://localhost:6379/0")
+# CELERY_BROKER_URL = os.getenv("REDIS_TLS_URL", "redis://localhost:6379/0")
+CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+
 
 CELERY_BEAT_SCHEDULE = {
     "add_data": {
