@@ -18,6 +18,7 @@ body.is-login {
     align-items: center;
     justify-content: center;
 }
+
 .navbar {
     background-color: #0a192f;
 }
@@ -110,30 +111,30 @@ body.is-login {
     --bs-position: end !important;
 } */
 
-.login-container {
-    width: 100%;
-    max-width: 400px;
-}
+
 /*.card {*/
 /*    background-color: rgba(255, 255, 255, 1);*/
 /*    backdrop-filter: blur(10px);*/
 /*    -webkit-backdrop-filter: blur(10px);*/
 /*}*/
 
-.card {
-    background-color: rgba(255, 255, 255, 1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    display: block;
-    height: auto; /* Let the height adjust automatically */
-    max-width: 100%; /* Make sure it doesn’t overflow horizontally */
-    overflow-y: visible; /* Ensure vertical overflow is visible */
-    overflow-x: auto; /* If table is wider than the card, allow horizontal scrolling */
+.login-container {
+    width: 100%;
+    max-width: 400px;
 }
 
+body.is-login .card {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid #fff;
+}
 
+.card {
+    background-color: rgba(255, 255, 255, .2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 
-
+}
 .btn-login {
     background-color: #4CAF50;
     border-color: #4CAF50;
@@ -142,7 +143,6 @@ body.is-login {
     transform: scale(1);
     transition: transform 0.3s ease;
 }
-
 .btn-login:hover {
     background-color: #45a049;
     border-color: #45a049;
@@ -150,8 +150,8 @@ body.is-login {
     transition: transform 0.3s ease;
 }
 .btn-createAccount {
-    background-color: #fff;
-    color: #757575;
+    /* background-color: #fff; */
+    color: #fff;
     border-color: #ddd;
     padding: 1rem 2rem;
     border-radius: 50px;
@@ -175,6 +175,9 @@ body.is-login {
     z-index: 2;
     font-size: 1.5rem;
 }
+
+
+
 
 #btnBet, #btnCopy{
     transform: scale(1);
@@ -215,23 +218,31 @@ input[type="text"], input[type="password"] {
 
 
 .divider {
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 0rem 1rem;
     margin: 0;
 }
+
 .divider::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 0;
-    width: 100%;
+    width: 45%;
     height: 1px;
     background-color: #d4d4d4;
     z-index: -1;
 }
-
-
-
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 45%;
+    height: 1px;
+    background-color: #d4d4d4;
+    z-index: -1;
+}
 
 @media (max-width: 576px) {
     body {
