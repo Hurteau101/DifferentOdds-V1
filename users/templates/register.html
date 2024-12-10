@@ -4,14 +4,14 @@
 {% block content %}
 <div class="login-container">
     <div class="d-flex justify-content-center">
-        <img src="{% static 'images/login_register/esports_logo.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
+        <img src="{% static 'images/login_register/logo-diffodds.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
     </div>
 
     <div class="card shadow rounded-4">
         <div class="card-body p-4 p-sm-5">
             <div class="text-center mb-4">
 
-                <h2 class="fw-bold">Register</h2>
+                <h2 class="fw-bold text-white">Register</h2>
             </div>
             <form method="POST" action="{% url 'register' %}">
                 {% csrf_token %}
@@ -20,7 +20,7 @@
                      {{ field }}
                      <label for="floatingUsername">{{ field.label }}</label>
                     {% if field.errors %}
-                        <div class="text-danger">
+                        <div class="text-white">
                             {% for error in field.errors %}
                                 <p>{{ error }}</p>
                             {% endfor %}
@@ -34,9 +34,9 @@
             </form>
 
             <div class="text-center mt-4">
-                <p class="text-muted mb-0">Already have an account? <a href="{% url 'login' %}" class="text-primary">Login</a></p>
+                <p class="text-white mb-0">Already have an account? <a href="{% url 'login' %}" class="text-white fw-bold">Login</a></p>
                 <br>
-                <p class="text-muted mb-0">Having issues? Contact us on Discord: <i>Railcats</i></p>
+                <p class="text-white mb-0">Having issues? Contact us on Discord: <i>Railcats</i></p>
             </div>
         </div>
     </div>

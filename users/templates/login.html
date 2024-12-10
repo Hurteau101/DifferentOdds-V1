@@ -4,13 +4,13 @@
 {% block content %}
 <div class="login-container">
     <div class="d-flex justify-content-center">
-        <img src="{% static 'images/login_register/esports_logo.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
+        <img src="{% static 'images/login_register/logo-diffodds.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
     </div>
     <div class="card shadow rounded-4">
         <div class="card-body p-4 p-sm-5">
             <div class="text-center mb-4">
 
-                <h2 class="fw-bold">Sign-in</h2>
+                <h2 class="fw-bold text-white">Sign-in</h2>
             </div>
             <form action="{% url 'login' %}" method='POST'>
                 {% csrf_token %}
@@ -24,7 +24,7 @@
                 </div>
                <div>
                     {% for message in messages %}
-                        <p class="text-center text-danger">{{ message }}</p>
+                        <p class="text-center text-white">{{ message }}</p>
                     {% endfor %}
                 </div>
                 <div class="d-grid">
@@ -32,17 +32,17 @@
                 </div>
             </form>
             <div class="text-center my-3 position-relative">
-                <span class="text-muted divider">Or</span>
+                <span class="text-white divider">Or</span>
             </div>
             <div class="d-grid">
-                <a href="{% url 'register' %}" class="btn btn-lg btn-createAccount">
+                <a href="{% url 'register' %}" class="btn btn-lg btn-outline-light btn-createAccount">
                     Create an Account
                 </a>
             </div>
             <div class="text-center mt-4">
-                <p class="text-muted mb-0">Forgot your password? <a href="{% url 'reset_password' %}" class="text-primary">Click Here</a></p>
+                <p class="mb-0 text-white">Forgot your password? <a href="{% url 'reset_password' %}" class="text-white fw-bold">Click Here</a></p>
                 <br>
-                <p class="text-muted mb-0">Having issues? Contact us on Discord: <i>Railcats</i></p>
+                <p class="mb-0 text-white"">Having issues? Contact us on Discord: <i>Railcats</i></p>
             </div>
         </div>
     </div>

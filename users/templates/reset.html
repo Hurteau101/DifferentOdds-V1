@@ -4,13 +4,13 @@
 {% block content %}
 <div class="login-container">
     <div class="d-flex justify-content-center">
-        <img src="{% static 'images/login_register/esports_logo.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
+        <img src="{% static 'images/login_register/logo-diffodds.png' %}" alt="Esports Logo" class="img-fluid mb-4 text-center">
     </div>
 
     <div class="card shadow rounded-4">
         <div class="card-body p-4 p-sm-5">
             <div class="text-center mb-4">
-                <h2 class="fw-bold">Enter Password</h2>
+                <h2 class="fw-bold text-white">Enter Password</h2>
             </div>
             <form method="POST">
                 {% csrf_token %}
@@ -19,7 +19,7 @@
                             {{ field }}
                             <label for="floatingUsername">{{ field.label }}</label>
                             {% if field.errors %}
-                                <div class="text-danger">
+                                <div class="text-white">
                                     {% for error in field.errors %}
                                         <p>{{ error }}</p>
                                     {% endfor %}
