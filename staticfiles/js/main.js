@@ -1,3 +1,13 @@
+var viewportmeta = document.querySelector('meta[name="viewport"]');
+if (viewportmeta) {
+    if (screen.width < 425) {
+        var newScale = screen.width / 425;
+        viewportmeta.content = 'width=425, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
+    } else {
+        viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
+    }
+}
+
 // Convert timestamps to user's local timezone
 document.querySelectorAll('td[data-timestamp]').forEach(function (cell) {
     const timestamp = parseInt(cell.getAttribute('data-timestamp')) * 1000; // Convert to milliseconds
@@ -23,7 +33,7 @@ document.querySelectorAll('td[data-timestamp]').forEach(function (cell) {
     cell.textContent = formattedTime; // Update the cell content
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     function checkCheckBoxes() {
         const checkboxes = document.querySelectorAll('.row-checkbox');
         const btnBet = document.getElementById('btnBet');
@@ -46,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var urlLink = "https://app.prizepicks.com/?projections=";
             var firstChecked = true;
 
-            checkboxes.forEach(function(checkbox) {
+            checkboxes.forEach(function (checkbox) {
                 if (checkbox.checked) {
                     var prizepickValue = checkbox.getAttribute('data-value');
                     if (firstChecked) {
@@ -65,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    document.querySelectorAll('.row-checkbox').forEach(function(checkbox) {
+    document.querySelectorAll('.row-checkbox').forEach(function (checkbox) {
         checkbox.addEventListener('change', checkCheckBoxes);
     });
 
@@ -75,14 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnCopy = document.getElementById('btnCopy');
 
     if (btnBet) {
-        btnBet.addEventListener('click', function() {
+        btnBet.addEventListener('click', function () {
             const urlLink = loopCheckboxes();
             window.open(urlLink, '_blank').focus();
         });
     }
 
     if (btnCopy) {
-        btnCopy.addEventListener('click', function() {
+        btnCopy.addEventListener('click', function () {
             const urlLink = loopCheckboxes();
             navigator.clipboard.writeText(urlLink);
             btnCopy.innerHTML = '<span class="bi bi-copy"></span> Link Copied';
@@ -134,13 +144,13 @@ document.addEventListener('DOMContentLoaded', function() {
             location.reload(true);
         });
 
-        $('#customSearch').on('keyup', function() {
+        $('#customSearch').on('keyup', function () {
             if (table) {
                 table.search(this.value).draw();
             }
         });
 
-        $('#floatingStatSelect').on('change', function() {
+        $('#floatingStatSelect').on('change', function () {
             var selectedStat = $(this).val();
             if (selectedStat === "All") {
                 table.column(6).search('').draw();
@@ -149,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        $('#floatingTeamSelect').on('change', function() {
+        $('#floatingTeamSelect').on('change', function () {
             var selectedTeam = $(this).val();
             if (selectedTeam === "All") {
                 table.column(4).search('').draw();
@@ -162,10 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const csrftoken = getCookie('csrftoken');
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const messageForm = document.getElementById('messageForm');
 
-    messageForm.addEventListener('submit', function(event) {
+    messageForm.addEventListener('submit', function (event) {
         event.preventDefault();
         const message = document.getElementById('message').value;
 
@@ -177,18 +187,18 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ message: message })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                $('#popup').modal('hide'); // Close the modal
-            } else {
-                alert('Failed to send message.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred.');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    $('#popup').modal('hide'); // Close the modal
+                } else {
+                    alert('Failed to send message.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            });
     });
 });
 
@@ -218,15 +228,15 @@ function fetchAlerts() {
         },
         credentials: 'same-origin'
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.alerts.length > 0) {
-            alertUser(data.alerts);
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching alerts:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.alerts.length > 0) {
+                alertUser(data.alerts);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching alerts:', error);
+        });
 }
 
 function alertUser(alerts) {
@@ -246,7 +256,7 @@ function alertUser(alerts) {
 
     modal.show();
 
-    closeButton.onclick = function() {
+    closeButton.onclick = function () {
         alerts.forEach(alert => acknowledgeAlert(alert.id));
         modal.hide();
     };
@@ -262,15 +272,15 @@ function acknowledgeAlert(alertId) {
         credentials: 'same-origin',
         body: JSON.stringify({ alert_id: alertId })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status !== 'success') {
-            console.error('Error acknowledging alert:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error acknowledging alert:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== 'success') {
+                console.error('Error acknowledging alert:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error acknowledging alert:', error);
+        });
 }
 
 // Fetch alerts every 30 seconds
