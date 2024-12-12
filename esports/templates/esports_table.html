@@ -20,20 +20,17 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-4 col-12">
             <h1 class="mb-4" id="sport_name">{{ esport_name }}</h1>
         </div>
-        <div class="col"></div>
-        <div class="col-auto d-flex justify-content-end align-items-center">
-            <button type="button" id="btnBet"
-                    class="btn btn-lg bg-dark btnBet bg-gradient text-light rounded-5 me-3 mb-2"
-                    style="font-size: 1rem;">
+
+        <div class="col-auto col-md-6 col-sm-8 col-12 d-flex justify-content-end align-items-center buttonArrangement">
+            <button type="button" id="btnBet" class="btn btn-lg bg-dark btnBet bg-gradient text-light rounded-5 me-3 mb-2" style="font-size: 1rem;">
                 <span class="bi bi-hand-thumbs-up">
                     Bet on PrizePicks
                 </span>
             </button>
-            <button type="button" id="btnCopy" class="btn btn-lg bg-primary bg-gradient text-light rounded-5  mb-2"
-                    style="font-size: 1rem;">
+            <button type="button" id="btnCopy" class="btn btn-lg bg-primary bg-gradient text-light rounded-5  mb-2" style="font-size: 1rem;">
                 <span class="bi bi-copy">
                     Copy Link
                 </span>
@@ -43,81 +40,80 @@
     <div class="card shadow border-0 bg-white rounded-4">
         <div class="card-body p-4">
             <div class="row g-2 mb-3">
-                <div class="col-sm-12 col-md-2">
+                <div class="col-sm-12 col-md-2 mb-2">
                     <div class="form-floating">
                         <select class="form-select" id="floatingStatSelect" aria-label="Floating label select example">
                             <option value="All" selected>All</option>
                             {% for stat in stat_types %}
-                                <option>{{ stat }}</option>
+                            <option>{{ stat }}</option>
                             {% endfor %}
                         </select>
                         <label for="floatingStatSelect">Stat Filter</label>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-2">
+                <div class="col-sm-12 col-md-2 mb-2">
                     <div class="form-floating">
                         <select class="form-select" id="floatingTeamSelect" aria-label="Floating label select example">
                             <option selected>All</option>
                             {% for team in teams %}
-                                <option>{{ team }}</option>
+                            <option>{{ team }}</option>
                             {% endfor %}
                         </select>
                         <label for="floatingTeamSelect">Team Filter</label>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-8 position-relative">
-                    <input type="text" id="customSearch" class="form-control form-control-lg"
-                           style="height: 100%;" placeholder="Enter player, team, time, stat type here...">
+                <div class="col-sm-12 col-md-8 mb-2 position-relative">
+                    <input type="text" id="customSearch" class="form-control form-custom-search form-control-lg" style="height: 100%; font-size: 15px; padding-left: 20px !important; padding-right: 52.5px !important;" placeholder="Enter player, team, time, stat type here...">
                     <button class="btn btn-float">
                         <span class="bi bi-search text-dark"></span>
                     </button>
                 </div>
             </div>
-            <table id="esportsTable" class="table table-striped dt-responsive nowrap table-hover" style="width:100%">
-                <thead>
-                    <tr>
-{#                        <th style="width: 130px;">Difference</th>#}
-                        <th>Difference</th>
-{#                        <th style="width: 100px">Percentage</th>#}
-                        <th style="text-align: left">Percentage</th>
-                        <th>Sport</th>
-{#                        <th style="width: 300px;">Player</th>#}
-                        <th>Player</th>
-{#                        <th style="width: 300px;">Team</th>#}
-                        <th>Team</th>
-{#                        <th style="width: 300px;">Opponent</th>#}
-                        <th>Opponent</th>
-                        <th>Stat Type</th>
-{#                        <th style="width: 90px">Underdog</th>#}
-                        <th style="text-align: left">Underdog</th>
-{#                        <th style="width: 90px">Prize Picks</th>#}
-                        <th style="text-align: left">Prize Picks</th>
-                        <th>Game Time</th>
-                        <th style="text-align: center">Prize Pick Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for player_details in esport_data %}
+            <div class="table-responsive">
+                <table id="esportsTable" class="table table-striped dt-responsive nowrap table-hover" style="width:100%">
+                    <thead>
                         <tr>
-                            <td><span class="badge rounded-pill difference-span">{{ player_details.difference }}</span></td>
+                            {#                        <th style="width: 130px;">Difference</th>#}
+                            <th>Difference</th>
+                            {#                        <th style="width: 100px">Percentage</th>#}
+                            <th style="text-align: left">Percentage</th>
+                            <th>Sport</th>
+                            {#                        <th style="width: 300px;">Player</th>#}
+                            <th>Player</th>
+                            {#                        <th style="width: 300px;">Team</th>#}
+                            <th>Team</th>
+                            {#                        <th style="width: 300px;">Opponent</th>#}
+                            <th>Opponent</th>
+                            <th>Stat Type</th>
+                            {#                        <th style="width: 90px">Underdog</th>#}
+                            <th style="text-align: left">Underdog</th>
+                            {#                        <th style="width: 90px">Prize Picks</th>#}
+                            <th style="text-align: left">Prize Picks</th>
+                            <th>Game Time</th>
+                            <th style="text-align: center">Prize Pick Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for player_details in esport_data %}
+                        <tr>
+                            <td><span class="badge rounded-pill difference-span" style="background-color: #fa8900 !important;">{{ player_details.difference }}</span></td>
                             <td>{{ player_details.difference_percentage }}%</td>
                             <td>{{ player_details.sport }}</td>
                             <td>{{ player_details.player_name }}</td>
                             <td>{{ player_details.team_name }}</td>
                             <td>{{ player_details.opponent_name }}</td>
                             <td>
-                                <span {% if 'Headshots' in player_details.stat_type %} class="text-danger"
-                                {% else %} class="text-primary" {% endif %}>
+                                <span {% if 'Headshots' in player_details.stat_type %} class="text-danger" {% else %} class="text-primary" {% endif %}>
                                     {{ player_details.stat_type }}
                                 </span>
                             </td>
                             <td>
-                                <span {% if player_details.underdog < player_details.prizepick %} class="badge rounded-pill bg-success px-3"{% else %} class="px-2"{% endif %}>
+                                <span {% if player_details.underdog < player_details.prizepick %} class="badge rounded-pill bg-success px-3" {% else %} class="px-2" {% endif %}>
                                     {{ player_details.underdog }}
                                 </span>
                             </td>
                             <td>
-                                <span {% if player_details.prizepick < player_details.underdog %} class="badge rounded-pill bg-success px-3" {% else %} class="px-2"{% endif %}>
+                                <span {% if player_details.prizepick < player_details.underdog %} class="badge rounded-pill bg-success px-3" {% else %} class="px-2" {% endif %}>
                                     {{ player_details.prizepick }}
                                 </span>
                             </td>
@@ -125,13 +121,13 @@
                                 {{ player_details.timestamp }}
                             </td>
                             <td class="center-checkbox">
-                                <input type="checkbox" id="table-checkbox" class="form-check-input row-checkbox"
-                                       data-value="{{ player_details.projection_string }}">
+                                <input type="checkbox" id="table-checkbox" class="form-check-input row-checkbox" data-value="{{ player_details.projection_string }}">
                             </td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -166,8 +162,8 @@
                     <br><br>
                     <b><i><i>Disclaimer</i></b>
                     <br><i>
-                    The bot can be spammy at times. It needs to be recoded. It still alerts when lines drop, but keep
-                    in mind it can be spammy especially when lines are fully released and lines are bumping.</i>
+                        The bot can be spammy at times. It needs to be recoded. It still alerts when lines drop, but keep
+                        in mind it can be spammy especially when lines are fully released and lines are bumping.</i>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

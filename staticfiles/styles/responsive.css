@@ -1,0 +1,117 @@
+.dt-input {
+    margin-right: 10px;
+}
+
+.dt-info {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.dt-paging {
+    justify-content: start;
+}
+
+.dt-length label {
+    font-size: 15px;
+}
+
+.form-floating>label {
+    padding: 1rem 1rem;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar-toggler {
+    position: relative;
+    z-index: 9999;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 20px;
+        gap: 0 25px;
+        justify-content: start;
+    }
+
+    .badge-notification {
+        position: absolute;
+        bottom: unset !important;
+        display: inline-block;
+        top: 0 !important;
+        left: unset !important;
+        right: -15px !important;
+        transform: unset !important;
+        border-radius: 50px;
+    }
+
+    #dropdownMenuButton {
+        padding: 0;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .nav-item {
+        padding: unset !important;
+        margin-right: unset !important;
+        width: unset;
+        display: flex;
+        margin: unset;
+    }
+
+    .nav-item a {
+        display: flex;
+        padding: unset !important;
+    }
+
+    .nav-item a img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+    }
+
+    .nav-item a::after {
+        display: none;
+    }
+}
+
+@media (max-width: 927px) {
+    body {
+        padding-top: 50px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 100px !important;
+    }
+}
+
+@media (max-width: 755px) {
+    #refreshTable {
+        position: absolute;
+        right: 0;
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 575px) {
+    .buttonArrangement {
+        justify-content: flex-start !important;
+        margin-top: -10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .buttonArrangement button {
+        width: 100%;
+    }
+}

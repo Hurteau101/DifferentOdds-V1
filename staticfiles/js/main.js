@@ -1,8 +1,8 @@
 var viewportmeta = document.querySelector('meta[name="viewport"]');
 if (viewportmeta) {
-    if (screen.width < 425) {
-        var newScale = screen.width / 425;
-        viewportmeta.content = 'width=425, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
+    if (screen.width < 465) {
+        var newScale = screen.width / 465;
+        viewportmeta.content = 'width=465, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
     } else {
         viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
     }
