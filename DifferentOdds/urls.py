@@ -11,4 +11,5 @@ urlpatterns = [
     path('admin-panel', views.admin_panel, name='admin_panel'),
     path('users/', include('users.urls')),  # Include the users app URLs
     path('admin_panel/', include('admin_panel.urls')),
+    path('soccer/', include('soccer.urls'))
 ]

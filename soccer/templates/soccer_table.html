@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% block title %} Soccer {% endblock %}
+{% block content %}
+<div class="container-fluid main-content">
+    <div class="card shadow border-0 bg-white rounded-4">
+        <div class="card-header bg-white">
+            <div class="row ">
+                <div class="col-md-6">
+                    <h1 class="my-3">Soccer</h1>
+                </div>
+                <div class="col d-flex justify-content-end align-items-center">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label mt-1" for="flexSwitchCheckDefault">Only UD Peppers</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4 ">
+            <div class="row g-2 mb-3">
+                <div class="col-sm-12 col-md-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelect1" aria-label="Floating label select example">
+                            <option value="1" selected>France</option>
+
+                        </select>
+                        <label for="floatingSelect1">Filter By Team</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelect2" aria-label="Floating label select example">
+                            <option value="1" selected>Over 2.5 Player Shots</option>
+
+                        </select>
+                        <label for="floatingSelect">Filter By Stat Type</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelect3" aria-label="Floating label select example">
+                            <option value="1" selected>John Doe</option>
+                            <option value="2">woxic</option>
+                            <option value="3">George</option>
+                        </select>
+                        <label for="floatingSelect">Search Player Name</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 position-relative">
+                    <input type="text" id="customSearch" class="form-control form-control-lg " style="height: 100%;" placeholder="Enter player, team, and stat type here...">
+                    <button class="btn btn-float"><span class="bi bi-search text-dark"></span></button>
+                </div>
+            </div>
+            <div class="table-responsive">
+
+                <table id="diffOddsTable" class="table table-striped dt-responsive nowrap table-hover" style="width:120%">
+                    <thead>
+                        <tr>
+                            <th style="width: 150px;">Sport</th>
+                            <th style="width: 350px;">Match Title</th>
+                            <th>Stat Type</th>
+                            <th>UD Line</th>
+                            <th>Multi</th>
+                            <th>Bet365</th>
+                            <th>Kambi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Soccer</td>
+                            <td>Team 1 vs Team 2</td>
+                            <td>
+                                <div class="p-2">
+                                    <h5 class="mb-1">Jude Bellingham</h5>
+                                     <span class="badge rounded-pill bg-dark px-3">Over 2.5 - Player Shots</span>
+                                </div>
+                            </td>
+                            <td>2.5</td>
+                            <td><span class="text-danger">x1.5</span></td>
+                            <td><span class="badge rounded-pill bg-success px-3">-225</span></td>
+                            <td><span class="badge rounded-pill bg-success px-3">-175</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

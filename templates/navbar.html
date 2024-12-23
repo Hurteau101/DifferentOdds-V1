@@ -60,6 +60,16 @@
                     {% endif %}
                     </a>
                 </li>
+                <li class="nav-item {% if request.path == '/soccer' %}active{% endif %}">
+                    <a href="{% url 'soccer' %}"><img src="{% static 'images/navbar/soccer.png' %}" alt="SOCCER">
+<!--                        ADD CONTEXT PROCESSOR FOR SOCCER-->
+                    {% if cod_total > 0 %}
+                        <span class="badge bg-danger badge-notification">{{ cod_total }}</span></a>
+                    {% else %}
+                        <span class="badge bg-danger badge-notification"></span>
+                    {% endif %}
+                    </a>
+                </li>
             </ul>
             <div class="d-flex">
                 <div class="dropdown">
