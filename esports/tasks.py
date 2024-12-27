@@ -1,14 +1,21 @@
 import requests
 from django.db import transaction
+
+from soccer.soccer_extracter import Soccer
 from .models import EsportData
 from DifferentOdds.celery import app
 
 def get_api_data():
     return requests.get("https://esportsdifference.com/compare").json()
 
+
+
 @app.task
 @transaction.atomic
 def get_data():
+    soccer = Soccer()
+    soccer.get_soccer_stats()
+
     data = get_api_data()
     EsportData.objects.all().delete()
 

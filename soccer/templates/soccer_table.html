@@ -2,6 +2,23 @@
 {% block title %} Soccer {% endblock %}
 {% block content %}
 <div class="container-fluid main-content">
+    <div id="popup" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-light">
+                    <h5 class="modal-title"><span class="bi bi-exclamation-circle"></span> Update Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Acknowledge</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card shadow border-0 bg-white rounded-4">
         <div class="card-header bg-white">
             <div class="row ">
@@ -20,68 +37,119 @@
             <div class="row g-2 mb-3">
                 <div class="col-sm-12 col-md-2">
                     <div class="form-floating">
-                        <select class="form-select" id="floatingSelect1" aria-label="Floating label select example">
-                            <option value="1" selected>France</option>
-
+                        <select class="form-select" id="floatingSelectTeam" aria-label="Floating label select example">
+                            <option selected>All</option>
+                            {% for team in teams %}
+                                <option>{{ team|title }}</option>
+                            {% endfor %}
                         </select>
                         <label for="floatingSelect1">Filter By Team</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-2">
                     <div class="form-floating">
-                        <select class="form-select" id="floatingSelect2" aria-label="Floating label select example">
-                            <option value="1" selected>Over 2.5 Player Shots</option>
-
+                        <select class="form-select" id="floatingStatType" aria-label="Floating label select example">
+                            <option selected>All</option>
+                            {% for stat in stat_types %}
+                                <option>{{ stat|title }}</option>
+                            {% endfor %}
                         </select>
                         <label for="floatingSelect">Filter By Stat Type</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-2">
                     <div class="form-floating">
-                        <select class="form-select" id="floatingSelect3" aria-label="Floating label select example">
-                            <option value="1" selected>John Doe</option>
-                            <option value="2">woxic</option>
-                            <option value="3">George</option>
+                        <select class="form-select" id="floatingPlayerNames" aria-label="Floating label select example">
+                            <option selected>All</option>
+                            {% for name in player_names %}
+                                <option>{{ name|title }}</option>
+                            {% endfor %}
                         </select>
                         <label for="floatingSelect">Search Player Name</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 position-relative">
-                    <input type="text" id="customSearch" class="form-control form-control-lg " style="height: 100%;" placeholder="Enter player, team, and stat type here...">
+                    <input type="text" id="customSearchSoccer" class="form-control form-control-lg " style="height: 100%;" placeholder="Enter player, team, and stat type here...">
                     <button class="btn btn-float"><span class="bi bi-search text-dark"></span></button>
                 </div>
             </div>
             <div class="table-responsive">
-
-                <table id="diffOddsTable" class="table table-striped dt-responsive nowrap table-hover" style="width:120%">
+                <table id="soccerTable" class="table table-striped dt-responsive nowrap table-hover" style="width:120%">
                     <thead>
                         <tr>
-                            <th style="width: 150px;">Sport</th>
-                            <th style="width: 350px;">Match Title</th>
+                            <th style="text-align: center;">Sport</th>
+                            <th>Game Date</th>
+                            <th>Match Title</th>
                             <th>Stat Type</th>
-                            <th>UD Line</th>
                             <th>Multi</th>
-                            <th>Bet365</th>
-                            <th>Kambi</th>
+                            <th style="text-align: left;">Bet365</th>
+                            <th style="text-align: left;">Kambi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Soccer</td>
-                            <td>Team 1 vs Team 2</td>
-                            <td>
-                                <div class="p-2">
-                                    <h5 class="mb-1">Jude Bellingham</h5>
-                                     <span class="badge rounded-pill bg-dark px-3">Over 2.5 - Player Shots</span>
-                                </div>
-                            </td>
-                            <td>2.5</td>
-                            <td><span class="text-danger">x1.5</span></td>
-                            <td><span class="badge rounded-pill bg-success px-3">-225</span></td>
-                            <td><span class="badge rounded-pill bg-success px-3">-175</span></td>
-                        </tr>
+                        {% for player in data %}
+                            <tr>
+                                <td>Soccer</td>
+                                <td data-timestamp="{{ player.game_date_time|date:"U" }}">
+                                {{ player.game_date_time }}
+                                </td>
+                                <td>{{ player.team|title }} vs {{ player.opponent|title }}</td>
+                                <td>
+                                    <div class="p-2">
+                                            <h5 class="mb-1">{{ player.player_name|title }}</h5>
+                                             <span class="badge rounded-pill bg-dark px-3">
+                                                 {{ player.over_under }} {{ player.line_value }} {{ player.stat_type }}
+                                             </span>
+                                        </div>
+                                </td>
+                                <td><span class="text-danger">x{{ player.multiplier }}</span></td>
+                                {% if player.bet365_odds %} <td><span class="badge rounded-pill bg-success px-3">{{ player.bet365_odds }}</span></td> {% else %} <td></td> {% endif %}
+                                {% if player.kambi_odds %} <td><span class="badge rounded-pill bg-success px-3">{{ player.kambi_odds }}</span></td> {% else %} <td></td> {% endif %}
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="contactModalLabel">Discord Contact</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    If you have any questions or need help, please contact us on Discord: <br><br>
+                    Railcats
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="esportAlertModal" tabindex="-1" aria-labelledby="esportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="esportModalLabel">Esport Alerts</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Want esports alerts when lines drop for PrizePicks and Underdog?
+                    <br><br>
+                    Join the Discord Bot server to get alerts for esport line drops: <br><br>
+                    <a href="https://discord.gg/w2zs9dugx7" target="_blank">Esport Alerts</a>
+                    <br><br>
+                    <b><i><i>Disclaimer</i></b>
+                    <br><i>
+                        The bot can be spammy at times. It needs to be recoded. It still alerts when lines drop, but keep
+                        in mind it can be spammy especially when lines are fully released and lines are bumping.</i>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

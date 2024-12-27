@@ -63,9 +63,10 @@ body.is-login {
     align-items: center;
 }
 
+
 .badge-notification {
     position: absolute;
-    top: 5;
+    top: 5px;
     right: 0;
     border-radius: 50px;
 }
@@ -253,6 +254,7 @@ input[type="text"], input[type="password"] {
     }
 }
 
+
 @media (max-width: 767.98px) {
     body {
         padding-top: 250px;
@@ -332,4 +334,39 @@ input[type="text"], input[type="password"] {
 
 .difference-span {
     background-color: #fa8900 !important;
+}
+
+
+.selected-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border-radius: 50px;
+    padding: 0rem 1.5rem;
+    background: #fff;
+}
+
+.selected-values {
+    flex-grow: 1; /* Allow the input to take available space */
+}
+#selectedCheckboxes {
+    font-size: 1rem;
+    font-weight: bold;
+    height: 42px;
+    padding: 0.575rem .75rem;
+}
+.clear-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    display: none; /* Initially hidden */
+}
+
+#column-toggle {
+    min-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.select2-container {
+    min-width: 60%;
 }

@@ -62,9 +62,8 @@
                 </li>
                 <li class="nav-item {% if request.path == '/soccer' %}active{% endif %}">
                     <a href="{% url 'soccer' %}"><img src="{% static 'images/navbar/soccer.png' %}" alt="SOCCER">
-<!--                        ADD CONTEXT PROCESSOR FOR SOCCER-->
-                    {% if cod_total > 0 %}
-                        <span class="badge bg-danger badge-notification">{{ cod_total }}</span></a>
+                    {% if soccer_total > 0 %}
+                        <span class="badge bg-danger badge-notification">{{ soccer_total }}</span></a>
                     {% else %}
                         <span class="badge bg-danger badge-notification"></span>
                     {% endif %}
