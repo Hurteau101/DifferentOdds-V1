@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
 from admin_panel import views
+from update.views import new_update_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('admin-panel', views.admin_panel, name='admin_panel'),
     path('users/', include('users.urls')),  # Include the users app URLs
     path('admin_panel/', include('admin_panel.urls')),
+    path('update', new_update_view, name='new_update_view'),
 ]

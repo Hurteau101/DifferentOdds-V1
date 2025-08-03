@@ -21,8 +21,20 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-4 col-12">
-            <h1 class="mb-4" id="sport_name">{{ esport_name }}</h1>
+        <h1 class="mb-4" id="sport_name">{{ esport_name }}</h1>
+        <h5>
+            View New Update Coming Soon:
+            <a href="{% url 'new_update_view' %}" class="btn btn-primary btn-sm ms-2" style="text-decoration:none;">
+                Check it Out
+            </a>
+        </h5>
         </div>
+{#        <div class="col-md-6 col-sm-4 col-12">#}
+{#            <h1 class="mb-4" id="sport_name">{{ esport_name }}</h1>#}
+{#            <h5>View New Update Coming Soon: <a></a> </h5>#}
+{#        </div>#}
+
+
 
         <div class="col-auto col-md-6 col-sm-8 col-12 d-flex justify-content-end align-items-center buttonArrangement">
             <button type="button" id="btnBet" class="btn btn-lg bg-dark btnBet bg-gradient text-light rounded-5 me-3 mb-2" style="font-size: 1rem;">

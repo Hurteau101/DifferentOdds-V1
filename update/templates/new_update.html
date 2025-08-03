@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %} New Update Soon {% endblock %}
+{% block content %}
+
+<div class="container-fluid main-content">
+    <div id="popup" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-light">
+                    <h5 class="modal-title"><span class="bi bi-exclamation-circle"></span> Update Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Acknowledge</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-6">
+            <img src="{% static 'images/update/image_1.png' %}" class="img-fluid rounded shadow preview-img" alt="Preview 1">
+        </div>
+        <div class="col-12 col-md-6">
+            <img src="{% static 'images/update/image_2.png' %}" class="img-fluid rounded shadow preview-img" alt="Preview 2">
+        </div>
+        <div class="col-12 col-md-6">
+            <img src="{% static 'images/update/image_3.png' %}" class="img-fluid rounded shadow preview-img" alt="Preview 3">
+        </div>
+        <div class="col-12 col-md-6">
+            <img src="{% static 'images/update/image_4.png' %}" class="img-fluid rounded shadow preview-img" alt="Preview 4">
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+         <div class="col-12 col-md-8 col-lg-6">
+            <img src="{% static 'images/update/image_5.png' %}" class="img-fluid rounded shadow large-preview-img" alt="Preview 5">
+        </div>
+    </div>
+</div>
+{% endblock %}
